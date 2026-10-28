@@ -462,6 +462,7 @@ const NOCLOCK = ['rift', 'loop', 'gram', 'match'];
 function drawClock() {
   $('#rclock').textContent = fmt(S.T);
   $('#ptime').textContent = fmtS(S.T); $('#ptime').style.visibility = NOCLOCK.includes(P.cur) ? 'hidden' : 'visible';
+  $('#homebar').style.visibility = ['home', 'drawer', 'match'].includes(P.cur) || S.drawer ? 'hidden' : 'visible';
   S.battery = Math.max(3, 41 - Math.floor(S.matches * 4 + S.loopCards * .6 + S.mins.gram * .15 + (S.T - START) / 12));
   $('#pbat').textContent = '🔋 ' + S.battery + '%';
   if (P.cur === 'home' && !S.drawer) { const b = document.querySelector('.home .big'); if (b) b.textContent = fmtS(S.T); }
@@ -693,6 +694,7 @@ function pRift() {
   P.cur = 'rift'; S.badges.rift = 0; TH.guild.unread = 0; if (S.focus === 'phone') S.read.guild = true; setDoing('in the Rift lobby');
   const ri = rankInfo();
   show(h('div', { cls: 'scr rift' },
+    h('button', { cls: 'hm', onclick: () => openP('home') }, '‹ Home'),
     h('button', { cls: 'menu', onclick: riftMenu, 'aria-label': 'Rift menu' }, '⋯'),
     h('div', { cls: 'logo' }, 'RIFT', h('small', {}, 'LANES · SEASON 9')),
     h('div', { cls: 'rank' }, h('div', { cls: 'r1' }, h('span', {}, 'Rank'), h('b', {}, ri.name)), h('div', { cls: 'bar' }, h('i', { style: `width:${ri.pct}%` })), h('div', { cls: 'r2' }, ri.note)),
@@ -1237,6 +1239,7 @@ function startNight() {
   setTimeout(() => advance(1, 'other', 'staring at the revision package'), 1200);
 }
 $('#sndBtn').addEventListener('click', () => A.toggle());
+$('#homebar').addEventListener('click', () => { if (!S.inMatch && !S.drawer && !S.ended) openP('home'); });
 $('#helpBtn').addEventListener('click', () => { if (R.busy) return; scene(async () => { await say(wide ? 'Click the room or the phone to look at it.' : 'Switch between ROOM and PHONE at the bottom.', 'Time moves when you do something. Your plan is on the sticky note.', 'Click the white dots in your room to do things. Use Desk, Door and Window to look around.'); }); });
 
 async function main() {

@@ -312,3 +312,8 @@ canvas.match{position:absolute;inset:0;width:100%;height:100%;display:block;touc
 .rate b{font-family:var(--mono);font-weight:500;color:#ffd27a}
 .bn .bx{flex:none;align-self:center;font-size:20px;line-height:1;color:#8b8e94;padding:2px 4px 4px;margin-left:2px}
 .bn .bx:hover{color:#fff}
+#homebar{flex:none;height:22px;display:grid;place-items:center;background:#0b0c10;cursor:pointer}
+#homebar i{display:block;width:118px;height:5px;border-radius:3px;background:#d9d9de;opacity:.75;transition:opacity .2s,width .2s}
+#homebar:hover i{opacity:1;width:132px}
+.rift .hm{position:absolute;left:8px;top:10px;font-size:13px;color:#c4b5fd;padding:5px 10px;border-radius:14px;z-index:2}
+.rift .hm:hover{background:rgba(139,92,246,.18)}
