@@ -1117,7 +1117,8 @@ async function owlReveal(k) {
     ontime: 'You did everything right. He sat there anyway.',
     loggedoff: 'When you left the guild, one of the people you left was him.'
   }[k];
-  await cLines(['nightowl was Hafiz.', `He was at the void deck below your window from 11:20 PM to ${S.hafiz.gone ? '12:15 AM' : 'late'}, playing Rift because it was quieter than home.`, line]);
+  const until = S.hafiz.gone ? 'from 11:20 PM to 12:15 AM' : S.endAt >= at(23, 20) ? 'from 11:20 PM, and he was still there when you went to sleep' : 'after you went to sleep';
+  await cLines(['nightowl was Hafiz.', `He sat at the void deck below your window ${until}, playing Rift because it was quieter than home.`, line]);
 }
 /* the exchange rate: time on the phone was never the same as time in the room */
 async function exchange() {
